@@ -70,22 +70,25 @@ static void CleanScreen (unsigned short* screen)
   }
 }
 
-
+#if 1
+static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen);
+#else
 static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen)
 {
   int crash = 0;
   Slab* slabs = snake->slabs;
   int head_slab = snake->head_slab;
   // Cut the tail
+
   /*int tail = snake->head_slab + 1;
   if (tail >= snake->len)
-    tail = 0;
+    tail = 0;*/
 
 
-  screen[slabs[tail].x + slabs[tail].y * 240] = 0; // BLACK */
+  //screen[slabs[tail].x + slabs[tail].y * 240] = 0; // BLACK 
 
   // Advance the head
-  int new_x = slabs[head_slab].x;
+  int new_x = slabs[head_slab].x; 
   int new_y = slabs[head_slab].y;
 
   head_slab++;
@@ -126,6 +129,7 @@ static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen)
 
   return crash;
 }
+#endif
 
 
 int main()
