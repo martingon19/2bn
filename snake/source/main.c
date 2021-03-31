@@ -70,7 +70,7 @@ static void CleanScreen (unsigned short* screen)
   }
 }
 
-#if 1
+#if 0
 static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen);
 #else
 static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen)
@@ -80,12 +80,12 @@ static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen)
   int head_slab = snake->head_slab;
   // Cut the tail
 
-  /*int tail = snake->head_slab + 1;
+  int tail = head_slab + 1;
   if (tail >= snake->len)
-    tail = 0;*/
+    tail = 0;
 
 
-  //screen[slabs[tail].x + slabs[tail].y * 240] = 0; // BLACK 
+  screen[slabs[tail].x + slabs[tail].y * 240] = 0; // BLACK 
 
   // Advance the head
   int new_x = slabs[head_slab].x; 
@@ -98,7 +98,7 @@ static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen)
 
   int speed_x = snake->speed_x;
   int speed_y = snake->speed_y;  
- /* if (keypad != 0) {
+  if (keypad != 0) {
     speed_x = speed_y = 0;
     if (keypad & 1)
       speed_x = 1;
@@ -111,21 +111,21 @@ static int UpdateSnake (int keypad, Snake* snake, unsigned short* screen)
 
     snake->speed_x = speed_x;
     snake->speed_y = speed_y;
-  }*/
+  }
 
   // Head new pos.
   new_x += speed_x;
   new_y += speed_y;
 
   unsigned short* head_pix = screen + (new_x + new_y * 240);
-  //if (*head_pix == 0) {
+  if (*head_pix == 0) {
     *head_pix = 0xffff; // Paint head, white
 
     slabs[head_slab].x = new_x;
     slabs[head_slab].y = new_y;
-  //} 
-  //else
-    //crash = 1;
+  } 
+  else
+    crash = 1;
 
   return crash;
 }
