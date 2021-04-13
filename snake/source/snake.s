@@ -43,7 +43,7 @@ UpdateSnake:
 
   cmp r0, #0
   bne keypad
-no_keypad:
+no_keypad:                  @ renombrar a keypad done
 
   add r6, r6, r8            @ new_x += speed_x;
   add r7, r7, r9            @ new_y += speed_y;

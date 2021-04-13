@@ -32,15 +32,15 @@ second_for:
 
   add r10, r10, r10, lsl #1   @r = (r << 1) + r
   add r10, r10, r7            @r = ((r << 1) + r + ball_r);
-  mov r10, r10, lsr #2        @r = ((r << 1) + r + ball_r) >> 2;
+  mov r10, r10, asr #2        @r = ((r << 1) + r + ball_r) >> 2;
 
   add r11, r11, r11, lsl #1   @g = (r << 1) + g
   add r11, r11, r8            @g = ((r << 1) + g + ball_g);
-  mov r11, r11, lsr #2        @g = ((r << 1) + g + ball_g) >> 2;
+  mov r11, r11, asr #2        @g = ((r << 1) + g + ball_g) >> 2;
 
   add r12, r12, r12, lsl #1   @b = (b << 1) + b
   add r12, r12, r9            @b = ((b << 1) + b + ball_b);
-  mov r12, r12, lsr #2        @b = ((b << 1) + b + ball_b) >> 2;
+  mov r12, r12, asr #2        @b = ((b << 1) + b + ball_b) >> 2;
 
   orr r6, r10, r11, lsl #5    @*dst = r | (g << 5)
   orr r6, r6, r12, lsl #10    @*dst = r | (g << 5) | (b<<10);
