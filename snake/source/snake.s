@@ -7,7 +7,7 @@
 .global UpdateSnake
 UpdateSnake:
 
-  stmdb   sp!,{r4,r5,r6,r7,r8,r9,r10,r11,r12,r14}
+  stmdb   sp!,{r4,r6,r7,r8,r9,r12,r14}
 
   mov r12, #240
   ldrh r8, [r1, #4]         @ Me "traigo" snake->len
@@ -63,7 +63,7 @@ no_keypad:                  @ renombrar a keypad done
 
 end_update:
 
-  ldmia   sp!,{r4,r5,r6,r7,r8,r9,r10,r11,r12,r14}
+  ldmia   sp!,{r4,r6,r7,r8,r9,r12,r14}
   bx      lr
 
 head_pos_black:
