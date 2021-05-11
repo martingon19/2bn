@@ -8,26 +8,23 @@
 #include <stdlib.h>
 
 #if 1
-extern void SortArray (int *array, int len);
+extern void SortArray (signed char *array, int len);
 #else
-static void SortArray (int *array, int len)
-{ 
-  len -= 1;
-  int full_length = len;
-  while (len  > 0) {
+static void SortArray (signed char *array, int len)
+{
+  while (len > 1) {
 
     int ordered = 1;
     int i;
-    for (i = full_length; i > 0; i--) {
+    for (i = 0; i < (len - 1); i++) {
 
-      if (array[i-1] > array[i]) {
+      if (array[i] > array[i+1]) {
         // Swap elements in the array
-        int t = array[i-1];
-        array[i-1] = array[i];
-        array[i] = t; 
+        int t = array[i];
+        array[i] = array[i+1];
+        array[i+1] = t; 
         ordered = 0;
       }
-
     }
 
     len--;
@@ -40,7 +37,7 @@ static void SortArray (int *array, int len)
 
 #define RANDOM_ARRAY_LEN  (17)
 
-static int random_array [RANDOM_ARRAY_LEN];
+static signed char random_array [RANDOM_ARRAY_LEN];
 
 int main(void) 
 {

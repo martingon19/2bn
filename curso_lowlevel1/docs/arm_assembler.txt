@@ -108,7 +108,7 @@ podra ver mas adelante. Los sufijos son:
 Sufijo2; todas estas instrucciones de calculo pueden ademas generar una comparacion con 0, 
 si se les añade el sufijo "s".
     
-    ej: subs    r4,r5,r6    ; Suma y compara el resultado con 0
+    ej: subs    r4,r5,r6    ; resta y compara el resultado con 0
         movlt   r4,#0    ; Si la operacion anterior es <0, r4 = r5
 
 Shifter operand; como 3r argumento, se puede usar cualquiera de estas formas:
@@ -309,7 +309,7 @@ Ejemplos:
     Inst.                       Equivalencia C
     -----                       --------------
     ldr  r5,[r0]             -> r5 = *r0, actuando r0 como puntero a int
-    ldr  r2,[r1,r3 lsl #2]   -> r2 = r1[r3], lsl #2 (<<2) es necesario para escalar el indice *4)
+    ldr  r2,[r1,r3,lsl #2]   -> r2 = r1[r3], lsl #2 (<<2) es necesario para escalar el indice *4)
     ldrb r2,[r1,r3]          -> r2 = r1[r3], r1 actua como puntero a char, no hace falta escalar  
     ldr  r0,[r3],#4          -> r0 = *r3++, para pasar al siguiente int hay que sumar 4
 

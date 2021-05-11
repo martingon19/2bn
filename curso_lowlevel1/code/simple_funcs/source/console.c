@@ -13,26 +13,26 @@ int Average (int a, int b)
   return (a + b) >> 1;
 }
 
-int Biggest (int a, int b);
-/*{
+int Biggest (int a, int b)
+{
   int res = a;
   if (b > a)
     res = b;
 
   return res;
-}*/
+}
 
-int Smallest (int a, int b);
-/*{
+int Smallest (int a, int b)
+{
   int res = a;
   if (b < a)
     res = b;
 
   return res;
-}*/
+}
 
-int TotalOfArray (int *array, int len);
-/*{
+int TotalOfArray (int *array, int len)
+{
   int res = *array++;
   len--;
   while (len != 0)
@@ -43,7 +43,7 @@ int TotalOfArray (int *array, int len);
   }
 
   return res;
-}*/
+}
 
 int BiggestOfArray (int *array, int len)
 {

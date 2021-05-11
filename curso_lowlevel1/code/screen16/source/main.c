@@ -26,46 +26,15 @@ int main()
   // Configure the screen at mode 3 using the display mode register
   video_regs[0] = 0x403; // mode3, bg2 on (16 bits RGB)
 
-  // 240 * 160 
-    for(y = 0; y<160*240; y++){
-  		screen[y] = 0x7FFF;
-    }
-    
-    unsigned short* ptr_one = &screen[20+10*240];
-    
-    for(y = 10 ; y < 150 ; ++y){
-		*ptr_one = 0x0000;	
-		ptr_one+=240;
-	}
-    
-    for(y = 20 ; y < 220 ; ++y){
-		*ptr_one++ = 0x0000;
-	}
-    for(y = 10 ; y < 150 ; ++y){
-		*ptr_one = 0x0000;	
-		ptr_one-=240;
-	}
-    for(y = 20 ; y < 220 ; ++y){
-		*ptr_one-- = 0x0000;
-	}
-	
-	//memset(ptr_one,0xFF,(20-220)*sizeof(unsigned short));
-	
-
-	
-    
-    
 	while(1) {
 		VBlankIntrWait();
 
     // Fill scren
-    //for(y = 0; y<160; y++) 
-    //  for(x = 0; x<240;x++)
-    //    screen[x + y * 240] = RGB16(y & 31, g, x & 31);
-    
+    for(y = 0; y<160; y++) 
+      for(x = 0; x<240;x++)
+        screen[x + y * 240] = RGB16(y & 31, g, x & 31);
 
-
-    //g++;
+    g++;
   }
 }
 

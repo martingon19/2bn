@@ -3,14 +3,12 @@
 #include <gba_video.h>
 #include <gba_systemcalls.h>
 #include <gba_interrupt.h>
+#include "closest.h"
 
 #define RGB16(r,g,b)  ((r)+((g)<<5)+((b)<<10)) 
 
 
-typedef struct
-{
-    unsigned int x, y;
-} TPoint;
+
 
 static const TPoint _points_array [] =
 {
@@ -33,7 +31,7 @@ static const unsigned short _points_colors [] =
 };
 
 
-int Closest (const TPoint* points_array, int npoints, int x, int y)
+/*int Closest (const TPoint* points_array, int npoints, int x, int y)
 {
   int i = 0;
   int closest = 0;    // 1st point is closest, by default
@@ -50,17 +48,20 @@ int Closest (const TPoint* points_array, int npoints, int x, int y)
     }
   }
   return closest;
-}
+}*/
 
 
 // Fill the screen with closest points to each pixel
-
+#if 1
+void Voronoid (unsigned short* screen, const TPoint* points, int npoints, 
+               const unsigned short* palette);
+#else
 void Voronoid (unsigned short* screen, const TPoint* points, int npoints, 
                const unsigned short* palette)
 {
   int x,y;
-  for(y = 0; y<SCREEN_HEIGHT; y++) {  //240
-    for(x = 0; x<SCREEN_WIDTH; x++) { //160
+  for(y = 0; y<SCREEN_HEIGHT; y++) {  //160
+    for(x = 0; x<SCREEN_WIDTH; x++) { //240
       int c = Closest (points, 
               npoints, 
               x, y);
@@ -69,6 +70,7 @@ void Voronoid (unsigned short* screen, const TPoint* points, int npoints,
     }
   }
 }
+#endif
 
 
 int main()
